@@ -8,13 +8,17 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-class ShopAnalytics extends HTMLElement {
-  connectedCallback() {
-	  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-	  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-	  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-	  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	  })(window,document,'script','dataLayer',this.getAttribute('key'));
+import { LitElement } from '@polymer/lit-element';
+
+export class PageViewElement extends LitElement {
+  // Only render this page if it's actually visible.
+  _shouldRender(props, changedProps, old) {
+    return props.active;
+  }
+
+  static get properties() {
+    return {
+      active: Boolean
+    }
   }
 }
-customElements.define('shop-analytics', ShopAnalytics);

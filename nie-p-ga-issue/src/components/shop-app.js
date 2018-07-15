@@ -210,7 +210,7 @@ class ShopApp extends connect(store)(LitElement) {
 
     </style>
 
-    <shop-analytics key="GTM-P5CN8FC"></shop-analytics>
+    <shop-analytics key="GTM-PRG2R2R"></shop-analytics>
 
     <app-header role="navigation" id="header" effects="waterfall" condenses reveals>
       <app-toolbar>

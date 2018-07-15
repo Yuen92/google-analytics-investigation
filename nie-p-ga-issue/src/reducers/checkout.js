@@ -8,13 +8,25 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-class ShopAnalytics extends HTMLElement {
-  connectedCallback() {
-	  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-	  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-	  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-	  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	  })(window,document,'script','dataLayer',this.getAttribute('key'));
+import { UPDATE_CHECKOUT_STATE } from '../actions/checkout.js';
+import { UPDATE_LOCATION } from '../actions/app.js';
+
+const checkout = (state = {}, action) => {
+  switch (action.type) {
+    // Any navigation should reset the checkout form.
+    case UPDATE_LOCATION:
+      return {
+        ...state,
+        state: 'init'
+      };
+    case UPDATE_CHECKOUT_STATE:
+      return {
+        ...state,
+        state: action.state
+      };
+    default:
+      return state;
   }
 }
-customElements.define('shop-analytics', ShopAnalytics);
+
+export default checkout;

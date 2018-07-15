@@ -8,13 +8,38 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-class ShopAnalytics extends HTMLElement {
-  connectedCallback() {
-	  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-	  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-	  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-	  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	  })(window,document,'script','dataLayer',this.getAttribute('key'));
+import { html } from '@polymer/lit-element';
+
+export const shopCommonStyle = html`
+<style>
+  [hidden] {
+    display: none !important;
   }
-}
-customElements.define('shop-analytics', ShopAnalytics);
+
+  header {
+    text-align: center;
+  }
+
+  header > h1 {
+    margin: 0 0 4px 0;
+    font-size: 1.3em;
+    font-weight: 500;
+  }
+
+  header > span {
+    color: var(--app-secondary-color);
+    font-size: 12px;
+  }
+
+  header > shop-button[responsive] {
+    margin-top: 20px;
+  }
+
+  @media (max-width: 767px) {
+
+    header > h1 {
+      font-size: 1.1em;
+    }
+
+  }
+</style>`;
